@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ar Cafe </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+
+<body>
+    <!-- navbar -->
+    <header class="bg-white p-4 shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold text-[#27548A] hover:text-blue-800 transition-colors cursor-pointer">
+                ☕ Ar Cafe
+            </div>
+            <ul class="hidden md:flex justify-center items-center gap-8 text-sm font-medium">
+                <li><a href="#home"
+                        class="text-gray-700 hover:text-[#27548A] transition-colors duration-300 cursor-pointer">Home</a>
+                </li>
+                <li><a href="#about"
+                        class="text-gray-700 hover:text-[#27548A] transition-colors duration-300 cursor-pointer">About</a>
+                </li>
+                <li><a href="#menu"
+                        class="text-gray-700 hover:text-[#27548A] transition-colors duration-300 cursor-pointer">Menu</a>
+                </li>
+                <li><a href="#contact"
+                        class="text-gray-700 hover:text-[#27548A] transition-colors duration-300 cursor-pointer">Visit
+                        Us</a></li>
+            </ul>
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-2xl text-gray-700 hover:text-[#27548A] transition-colors">
+                ☰
+            </button>
+
+        </nav>
+    </header>
+
+    <!-- hero -->
+    <section id="home" class="bg-cover bg-center h-screen">
+        <div
+            class="bg-black bg-opacity-60 h-full flex flex-col justify-center items-center text-center text-white px-4">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Welcome to Ar Cafe</h1>
+            <p class="text-xl md:text-2xl mb-8">Your cozy corner for the best coffee in town</p>
+            <a href="#menu"
+                class="bg-[#27548A] hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">Explore
+                Our Menu</a>
+        </div>
+    </section>
+    <!-- about -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8 text-[#27548A]">About Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                <div class="p-4 col-span-1 row-span-1 flex flex-col justify-center">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#27548A]">Our Story</h3>
+                    <p class="text-gray-700 mb-2">
+                        Ar Cafe began as a dream to create a cozy space where coffee lovers could gather, relax, and
+                        enjoy exceptional brews. Since opening our doors, we've become a beloved spot for friends,
+                        families, and remote workers alike.
+                    </p>
+                    <p class="text-gray-700">
+                        Our passion for quality and community drives everything we do, from sourcing the finest beans to
+                        crafting each cup with care.
+                    </p>
+                </div>
+                <div class="p-4 col-span-1 row-span-2 flex justify-center items-center">
+                    <img src="/images/about.webp" alt="about-img"
+                        class="rounded-xl shadow-lg w-full h-auto object-cover max-h-96">
+                </div>
+                <div class="p-4 col-span-1 flex flex-col justify-center">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#27548A]">Our Philosophy</h3>
+                    <p class="text-gray-700 mb-2">
+                        We believe coffee is more than a drink—it's an experience. Our baristas are dedicated to
+                        perfecting every cup, and our menu features both classic favorites and creative specialties.
+                    </p>
+                    <p class="text-gray-700">
+                        Sustainability matters to us, so we partner with local suppliers and use eco-friendly practices
+                        wherever possible.
+                    </p>
+                </div>
+
+            </div>
+            <div class="carousel mt-8 overflow-hidden relative p-6 rounded-lg bg-white ">
+                <div class="group">
+                    <div class="card">
+                        <img src="/images/brands/DunkinLogo.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Folgers-logojpg.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Kirkland-Signature.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Lavazza-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Maxwell-House.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/McCafe-Logo.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Nescafé-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Starbucks-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Tim-Hortons-Logo.png" alt="">
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="card">
+                        <img src="/images/brands/DunkinLogo.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Folgers-logojpg.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Kirkland-Signature.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Lavazza-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Maxwell-House.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/McCafe-Logo.png" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Nescafé-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Starbucks-logo.jpg" alt="">
+                    </div>
+                    <div class="card">
+                        <img src="/images/brands/Tim-Hortons-Logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Specialties -->
+    <section id="specialties" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8 text-[#27548A]">Our Specialties</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Discover our most beloved creations, carefully crafted by our expert baristas using premium ingredients
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Specialty Card 1 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-200 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">☕</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#27548A]">Signature Espresso</h3>
+                        <p class="text-gray-600 text-sm">Our premium blend of Ethiopian and Colombian beans, roasted to
+                            perfection for a rich, bold flavor.</p>
+                    </div>
+                </div>
+
+                <!-- Specialty Card 2 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-200 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">🥛</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#27548A]">Artisan Cappuccino</h3>
+                        <p class="text-gray-600 text-sm">Expertly layered espresso with velvety steamed milk and
+                            artistic foam, topped with a hint of cinnamon.</p>
+                    </div>
+                </div>
+
+                <!-- Specialty Card 3 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-200 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">🥐</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#27548A]">Fresh Croissants</h3>
+                        <p class="text-gray-600 text-sm">Buttery, flaky croissants baked fresh daily. Perfect companion
+                            to your morning coffee or afternoon treat.</p>
+                    </div>
+                </div>
+
+                <!-- Specialty Card 4 -->
+                <div
+                    class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-200 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">🍰</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#27548A]">Homemade Pastries</h3>
+                        <p class="text-gray-600 text-sm">Delicious selection of cakes, muffins, and cookies made with
+                            love using traditional family recipes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- menu -->
+    <section id="menu" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8 text-[#27548A]">Our Menu</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Espresso</h3>
+                    <p class="text-gray-700 mb-4">A rich and bold shot of our finest espresso.</p>
+                    <span class="text-[#27548A] font-bold">$3.00</span>
+                </div>
+                <!-- Menu Item 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Cappuccino</h3>
+                    <p class="text-gray-700 mb-4">Espresso topped with steamed milk and a layer of froth.</p>
+                    <span class="text-[#27548A] font-bold">$4.00</span>
+                </div>
+                <!-- Menu Item 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Latte</h3>
+                    <p class="text-gray-700 mb-4">A creamy blend of espresso and steamed milk.</p>
+                    <span class="text-[#27548A] font-bold">$4.50</span>
+                </div>
+                <!-- Menu Item 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Mocha</h3>
+                    <p class="text-gray-700 mb-4">A delightful mix of espresso, chocolate, and steamed milk.</p>
+                    <span class="text-[#27548A] font-bold">$5.00</span>
+                </div>
+                <!-- Menu Item 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Americano</h3>
+                    <p class="text-gray-700 mb-4">Espresso diluted with hot water for a smooth taste.</p>
+                    <span class="text-[#27548A] font-bold">$3.50</span>
+                </div>
+                <!-- Menu Item 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-semibold mb-2">Iced Coffee</h3>
+                    <p class="text-gray-700 mb-4">Chilled coffee served over ice, perfect for a hot day.</p>
+                    <span class="text-[#27548A] font-bold">$4.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact -->
+    <section id="contact" class="text-gray-600 body-font relative">
+        <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+            <div
+                class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+                <iframe width="100%" height="100%" class="absolute inset-0" frameborder="0" title="map" marginheight="0"
+                    marginwidth="0" scrolling="no"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13603.670494034875!2d74.33825310277837!3d31.52642237799093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391904fa04aceaed%3A0x1d64146a56cd2c7c!2sGulberg%202%2C%20Lahore%2C%20Pakistan!5e0!3m2!1sen!2s!4v1758436535689!5m2!1sen!2s"
+                    style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
+                <div class="bg-white relative flex flex-wrap sm:py-6 py-3 rounded shadow-md sm:text-[15px] text-[10px]">
+                    <div class="lg:w-1/2 px-6">
+                        <h2 class="title-font font-semibold text-gray-900 tracking-widest sm:text-xs text-[12px]">ADDRESS</h2>
+                        <p class="sm:mt-1">
+                            Ar Cafe, 123 Coffee St. Gulberg II, Lahore, Pakistan
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
+                        <h2 class="title-font font-semibold text-gray-900 tracking-widest sm:text-xs text-[12px]">EMAIL</h2>
+                        <a class="text-[#27548A] leading-relaxed">abdulrehmansafdar2928@gmail.com</a>
+                        <h2 class="title-font font-semibold text-gray-900 tracking-widest sm:text-xs text-[12px] sm:mt-4 mt-1">PHONE</h2>
+                        <p class="leading-relaxed">+92 330 294 7262</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
+                <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
+                <p class="leading-relaxed mb-5 text-gray-600">
+                    We would love to hear your thoughts, suggestions you may have. Please fill out the
+                    form below to get in touch with us.
+                </p>
+                <div class="relative mb-4">
+                    <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+                    <input type="text" id="name" name="name"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-[#27548A] focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mb-4">
+                    <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                    <input type="email" id="email" name="email"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-[#27548A] focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mb-4">
+                    <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                    <textarea id="message" name="message"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-[#27548A] focus:ring-2 focus:ring-yellow-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                </div>
+                <button
+                    class="text-white bg-[#27548A] border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg">Button</button>
+                <p class="text-xs text-gray-500 mt-3">
+                    We appreciate your feedback and look forward to hearing from you!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#27548A] text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Ar Cafe. All rights reserved. Made with ❤️ for coffee lovers.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

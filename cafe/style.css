@@ -1,0 +1,61 @@
+#home{
+    background: url('/images/hero-bg.jpg') no-repeat center center/cover !important;
+    height: 90vh;
+    position: relative;
+}
+.carousel{
+    width: 100%; 
+    display: flex;
+    /* border: 3px solid red; */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+    margin: auto;
+}
+.carousel::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, white 100%);
+    pointer-events: none; 
+    z-index: 1; 
+
+}
+.carousel::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, white 100%);
+    pointer-events: none; 
+    z-index: 1; 
+
+}
+.carousel::-webkit-scrollbar {
+    display: none; 
+}
+.group{
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+    animation: move 10s linear infinite;
+    padding-right: 2em;
+}
+.card{
+    flex: 0 0 10em;
+    color: white;
+    border-radius: 2rem;
+    text-align: center;
+    align-content: center;
+}
+
+@keyframes move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}

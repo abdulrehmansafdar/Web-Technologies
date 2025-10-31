@@ -90,7 +90,8 @@ A full-stack Employee Management System with CRUD operations built using TypeScr
 
 1. **Clone or navigate to the project directory**
    ```bash
-   cd "d:\Abdul Rehman\CS\5 sem\web tech\Mid assignment"
+   git clone https://github.com/abdulrehmansafdar/Web-Technologies.git
+   cd "/Mid assignment"
    ```
 
 2. **Start all containers**

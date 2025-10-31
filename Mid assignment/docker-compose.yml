@@ -1,0 +1,75 @@
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: employee_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: employee_management
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    networks:
+      - employee_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # PHP Backend
+  backend:
+    build: ./backend
+    container_name: employee_backend
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - employee_network
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    container_name: employee_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+    networks:
+      - employee_network
+
+  # phpMyAdmin (optional)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: employee_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - employee_network
+
+volumes:
+  db_data:
+
+networks:
+  employee_network:
+    driver: bridge

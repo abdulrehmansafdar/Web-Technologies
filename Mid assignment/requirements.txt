@@ -1,0 +1,87 @@
+Build a full-stack Employee Management System web application that performs all CRUD operations (Create, Read, Update, Delete) for employee records and attendance tracking. The application should be built using TypeScript for the frontend, PHP for the backend, and MySQL as the database, all containerized using Docker.
+
+🧩 Tech Stack
+
+Frontend: TypeScript + TailwindCSS (responsive UI with clean, modern design)
+
+Backend: PHP (can use plain PHP or a minimal framework like Slim or Laravel if needed)
+
+Database: MySQL (containerized in Docker)
+
+Containerization: Docker (use Docker Compose to run both PHP server and MySQL)
+
+⚙️ Features
+
+Employee Table Fields:
+
+id (auto-increment, primary key)
+
+name
+
+email
+
+position
+
+salary
+
+created_at, updated_at
+
+CRUD Functionalities:
+
+Create: Add a new employee via a form.
+
+Read: Display all employees in a table with pagination.
+
+Update: Edit employee details in a modal or separate form.
+
+Delete: Remove an employee with confirmation.
+
+UI Requirements:
+
+Use TailwindCSS for styling.
+
+Add a simple navbar and a dashboard layout.
+
+Use alerts/toasts for success/error messages.
+
+Backend Requirements:
+
+Create REST API endpoints in PHP for CRUD (GET, POST, PUT, DELETE).
+
+Connect to MySQL using PDO.
+
+Return JSON responses to the frontend.
+
+Frontend Requirements:
+
+Use TypeScript for type safety.
+
+Fetch data from PHP APIs using Fetch API or Axios.
+
+Show loading states while fetching.
+
+Docker Setup:
+
+Container 1: PHP + Apache server.
+
+Container 2: MySQL server (expose port 3306).
+
+Container 3 (optional): phpMyAdmin for visual DB management.
+
+Include a docker-compose.yml file to spin up all containers easily.
+
+🧾 Deliverables
+
+/frontend → TypeScript + Tailwind code
+
+/backend → PHP REST API
+
+/docker-compose.yml → full environment setup
+
+/db/init.sql → SQL script to create tables
+
+Documentation (README.md) with setup steps and API endpoints.
+
+🎯 Goal
+
+Produce a ready-to-run codebase that runs locally with docker-compose up, connects the frontend and backend properly, and allows full CRUD of employees.

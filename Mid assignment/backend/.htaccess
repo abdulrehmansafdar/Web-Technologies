@@ -1,4 +1,17 @@
 RewriteEngine On
+
+# Handle auth routes
+RewriteRule ^auth/(.*)$ auth.php/$1 [L,QSA]
+
+# Handle attendance routes
+RewriteRule ^attendance/(.*)$ attendance.php/$1 [L,QSA]
+
+# Handle leaves routes
+RewriteRule ^leaves/(.*)$ leaves.php/$1 [L,QSA]
+RewriteRule ^leaves$ leaves.php [L,QSA]
+
+# Handle employee CRUD (default)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+

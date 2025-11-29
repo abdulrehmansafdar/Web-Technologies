@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-user-shield text-3xl"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+                        <p class="text-sm text-blue-200">Leave Management</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="admin-name" class="text-sm"></span>
+                    <span class="text-xs bg-blue-700 px-2 py-1 rounded">Admin</span>
+                    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-sm font-semibold transition">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-8">
+        <!-- Back Navigation -->
+        <div class="mb-6">
+            <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Employee Directory
+            </a>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex space-x-2">
+                <button onclick="filterLeaves('pending')" id="tab-pending" class="px-6 py-2 rounded-lg font-semibold transition bg-yellow-500 text-white">
+                    Pending
+                </button>
+                <button onclick="filterLeaves('approved')" id="tab-approved" class="px-6 py-2 rounded-lg font-semibold transition bg-gray-200 text-gray-700 hover:bg-gray-300">
+                    Approved
+                </button>
+                <button onclick="filterLeaves('rejected')" id="tab-rejected" class="px-6 py-2 rounded-lg font-semibold transition bg-gray-200 text-gray-700 hover:bg-gray-300">
+                    Rejected
+                </button>
+                <button onclick="filterLeaves('all')" id="tab-all" class="px-6 py-2 rounded-lg font-semibold transition bg-gray-200 text-gray-700 hover:bg-gray-300">
+                    All
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 font-semibold">Total Requests</p>
+                        <p id="stat-total" class="text-3xl font-bold text-gray-800 mt-2">0</p>
+                    </div>
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
+                        <i class="fas fa-calendar-alt text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 font-semibold">Pending</p>
+                        <p id="stat-pending" class="text-3xl font-bold text-yellow-600 mt-2">0</p>
+                    </div>
+                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 font-semibold">Approved</p>
+                        <p id="stat-approved" class="text-3xl font-bold text-green-600 mt-2">0</p>
+                    </div>
+                    <div class="bg-green-100 text-green-600 p-3 rounded-full">
+                        <i class="fas fa-check-circle text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 font-semibold">Rejected</p>
+                        <p id="stat-rejected" class="text-3xl font-bold text-red-600 mt-2">0</p>
+                    </div>
+                    <div class="bg-red-100 text-red-600 p-3 rounded-full">
+                        <i class="fas fa-times-circle text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leave Requests List -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800">
+                    <i class="fas fa-list mr-2"></i>Leave Requests
+                </h3>
+            </div>
+            
+            <div id="leaves-container" class="divide-y divide-gray-200">
+                <!-- Leave cards will be inserted here -->
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loading-state" class="px-6 py-12 text-center hidden">
+                <i class="fas fa-spinner fa-spin text-4xl text-blue-600 mb-4"></i>
+                <p class="text-gray-500">Loading leave requests...</p>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="empty-state" class="px-6 py-12 text-center hidden">
+                <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg">No leave requests found</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approval Modal -->
+    <div id="approval-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800">
+                    <span id="modal-title">Approve Leave Request</span>
+                </h3>
+            </div>
+            
+            <div class="px-6 py-4">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Admin Notes (Optional)</label>
+                    <textarea id="admin-notes" rows="4" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        placeholder="Add any notes or comments..."></textarea>
+                </div>
+            </div>
+            
+            <div class="px-6 py-4 bg-gray-50 flex justify-end space-x-3 rounded-b-lg">
+                <button onclick="closeApprovalModal()" class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition">
+                    Cancel
+                </button>
+                <button id="modal-confirm-btn" onclick="confirmAction()" class="px-4 py-2 rounded-lg font-semibold transition">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-leaves.js"></script>
+</body>
+</html>

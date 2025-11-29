@@ -6,10 +6,67 @@ let currentPage = 1;
 let totalPages = 1;
 let deleteEmployeeId = null;
 
+// Check authentication
+async function checkAuth() {
+    const token = localStorage.getItem('authToken');
+    const userRole = localStorage.getItem('userRole');
+    
+    if (!token || userRole !== 'admin') {
+        window.location.href = 'login.html';
+        return false;
+    }
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (!response.ok) {
+            localStorage.clear();
+            window.location.href = 'login.html';
+            return false;
+        }
+        
+        const data = await response.json();
+        if (data.user) {
+            document.getElementById('admin-name').textContent = `Welcome, ${data.user.username}`;
+        }
+        
+        return true;
+    } catch (error) {
+        console.error('Auth check failed:', error);
+        localStorage.clear();
+        window.location.href = 'login.html';
+        return false;
+    }
+}
+
+// Logout function
+function logout() {
+    const token = localStorage.getItem('authToken');
+    
+    if (token) {
+        fetch(`${API_BASE_URL}/auth/logout`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).catch(error => console.error('Logout error:', error));
+    }
+    
+    localStorage.clear();
+    window.location.href = 'login.html';
+}
+
 // Initialize app
-document.addEventListener('DOMContentLoaded', () => {
-    loadEmployees();
-    setupFormHandler();
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await checkAuth()) {
+        loadEmployees();
+        setupFormHandler();
+    }
 });
 
 // Show alert message

@@ -98,6 +98,10 @@ A full-stack Employee Management System with CRUD operations built using TypeScr
    ```bash
    docker-compose up -d
    ```
+   **On Linux Distros**
+   ```bash
+   sudo docker compose up -d
+   ```
 
 3. **Wait for services to initialize** (about 30-60 seconds)
 

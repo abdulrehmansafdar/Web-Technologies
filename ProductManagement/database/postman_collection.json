@@ -1,0 +1,30 @@
+{
+  "info": {
+    "name": "Product Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:3000/api/products"
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"New Item\",\n  \"description\": \"New item description\",\n  \"price\": 9.99,\n  \"category\": \"Books\",\n  \"stock_quantity\": 10\n}"
+        },
+        "url": "http://localhost:3000/api/products"
+      }
+    }
+  ]
+}

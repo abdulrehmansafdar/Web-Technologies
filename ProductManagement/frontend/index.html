@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Product Management</h1>
+  </header>
+  <main>
+    <section id="toolbar">
+      <input type="text" id="search" placeholder="Search products..." />
+      <select id="category-filter">
+        <option value="">All categories</option>
+      </select>
+      <button id="add-product" class="btn primary">Add Product</button>
+    </section>
+
+    <section id="list">
+      <table id="products-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div id="pagination"></div>
+    </section>
+
+    <!-- Add/Edit Modal -->
+    <div id="modal" class="hidden" aria-hidden="true" style="display: none;">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header">
+          <h2 id="modal-title">Add Product</h2>
+          <button class="close-btn" id="modal-close" aria-label="Close">×</button>
+        </div>
+        <form id="product-form" class="modal-form">
+          <input type="hidden" id="product-id" />
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" required />
+          </div>
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+          </div>
+          <div>
+            <label for="price">Price</label>
+            <input type="number" id="price" step="0.01" required />
+          </div>
+          <div>
+            <label for="category">Category</label>
+            <select id="category"></select>
+          </div>
+          <div>
+            <label for="stock_quantity">Stock</label>
+            <input type="number" id="stock_quantity" />
+          </div>
+          <div style="grid-column: 1 / -1" class="modal-actions">
+            <button type="submit" class="save">Save</button>
+            <button type="button" class="cancel" id="cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -7,42 +7,85 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2.0" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
-    <h1>Product Management</h1>
+    <div class="header-content">
+      <h1>Product Management System</h1>
+      <nav class="main-nav">
+        <button class="nav-btn active" data-view="products">
+          <span class="nav-icon">📦</span> Products
+        </button>
+        <button class="nav-btn" data-view="categories">
+          <span class="nav-icon">📂</span> Categories
+        </button>
+      </nav>
+    </div>
   </header>
   <main>
-    <section id="toolbar">
-      <input type="text" id="search" placeholder="Search products..." />
-      <select id="category-filter">
-        <option value="">All categories</option>
-      </select>
-      <button id="add-product" class="btn primary">Add Product</button>
+    <!-- Products View -->
+    <section id="products-view" class="view-section active">
+      <div class="section-header">
+        <h2>Products</h2>
+        <button id="add-product" class="btn primary">
+          <span>+</span> Add Product
+        </button>
+      </div>
+      
+      <section id="toolbar">
+        <input type="text" id="search" placeholder="Search products..." />
+        <select id="category-filter">
+          <option value="">All categories</option>
+        </select>
+      </section>
+
+      <section id="list">
+        <table id="products-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <div id="pagination"></div>
+      </section>
     </section>
 
-    <section id="list">
-      <table id="products-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Stock</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-      <div id="pagination"></div>
+    <!-- Categories View -->
+    <section id="categories-view" class="view-section">
+      <div class="section-header">
+        <h2>Categories</h2>
+        <button id="add-category" class="btn primary">
+          <span>+</span> Add Category
+        </button>
+      </div>
+      
+      <section id="categories-list">
+        <table id="categories-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </section>
     </section>
 
-    <!-- Add/Edit Modal -->
-    <div id="modal" class="hidden" aria-hidden="true" style="display: none;">
+    <!-- Product Modal -->
+    <div id="modal" class="modal hidden" aria-hidden="true" style="display: none;">
       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-header">
           <h2 id="modal-title">Add Product</h2>
@@ -73,6 +116,27 @@
           <div style="grid-column: 1 / -1" class="modal-actions">
             <button type="submit" class="save">Save</button>
             <button type="button" class="cancel" id="cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="category-modal" class="modal hidden" aria-hidden="true" style="display: none;">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="category-modal-title">
+        <div class="modal-header">
+          <h2 id="category-modal-title">Add Category</h2>
+          <button class="close-btn" id="category-modal-close" aria-label="Close">×</button>
+        </div>
+        <form id="category-form" class="modal-form">
+          <input type="hidden" id="category-id" />
+          <div style="grid-column: 1 / -1">
+            <label for="category-name">Category Name</label>
+            <input type="text" id="category-name" required />
+          </div>
+          <div style="grid-column: 1 / -1" class="modal-actions">
+            <button type="submit" class="save">Save</button>
+            <button type="button" class="cancel" id="category-cancel">Cancel</button>
           </div>
         </form>
       </div>

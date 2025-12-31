@@ -1,0 +1,305 @@
+/**
+ * ===========================================
+ * Global CSS Styles
+ * ===========================================
+ * 
+ * Professional color scheme: Dark Gray, White, Dark Olive
+ * This file contains global styles and Tailwind CSS imports.
+ */
+
+/* Import Tailwind CSS base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for theming - Professional Dark Gray & Olive */
+:root {
+  --color-primary: #556b2f;
+  --color-primary-dark: #465723;
+  --color-primary-light: #6b7a4f;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+}
+
+/* Base styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar - Professional dark gray */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+    border: 2px solid #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Card component - Clean white with subtle shadow */
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6 border border-slate-100;
+  }
+
+  /* Button variants - Professional styling */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn bg-slate-100 text-slate-700 hover:bg-slate-200 focus:ring-slate-500 border border-slate-200;
+  }
+
+  .btn-success {
+    @apply btn bg-success-500 text-white hover:bg-success-600 focus:ring-success-500;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-slate-600 hover:bg-slate-100 shadow-none;
+  }
+
+  .btn-outline {
+    @apply btn bg-transparent text-primary-600 border-2 border-primary-600 hover:bg-primary-50;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  /* Input styles - Professional look */
+  .input {
+    @apply w-full px-4 py-2.5 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200;
+  }
+
+  .input-error {
+    @apply border-danger-500 focus:ring-danger-500 focus:border-danger-500;
+  }
+
+  /* Label styles */
+  .label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+
+  /* Badge styles - Clean and modern */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-700;
+  }
+
+  .badge-success {
+    @apply badge bg-success-100 text-success-600;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning-100 text-warning-600;
+  }
+
+  .badge-danger {
+    @apply badge bg-danger-100 text-danger-600;
+  }
+
+  .badge-gray {
+    @apply badge bg-slate-100 text-slate-600;
+  }
+
+  /* Avatar styles - Dark olive accent */
+  .avatar {
+    @apply inline-flex items-center justify-center rounded-full bg-primary-100 text-primary-700 font-bold;
+  }
+
+  .avatar-sm {
+    @apply w-8 h-8 text-xs;
+  }
+
+  .avatar-md {
+    @apply w-10 h-10 text-sm;
+  }
+
+  .avatar-lg {
+    @apply w-12 h-12 text-base;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-slate-200 animate-pulse rounded;
+  }
+
+  /* Professional section headers */
+  .section-header {
+    @apply text-lg font-bold text-slate-800 mb-4 flex items-center gap-2;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-slate-200 my-4;
+  }
+}
+
+/* Utility styles */
+@layer utilities {
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  /* Custom scrollbar hide */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Glass effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Priority colors for tasks - Professional styling */
+.priority-low {
+  @apply text-slate-600 bg-slate-100;
+}
+
+.priority-medium {
+  @apply text-primary-700 bg-primary-100;
+}
+
+.priority-high {
+  @apply text-warning-600 bg-warning-100;
+}
+
+.priority-critical {
+  @apply text-danger-600 bg-danger-100;
+}
+
+/* Status colors - Clean look */
+.status-todo {
+  @apply text-slate-600 bg-slate-100;
+}
+
+.status-in-progress {
+  @apply text-primary-700 bg-primary-100;
+}
+
+.status-in-review {
+  @apply text-warning-600 bg-warning-100;
+}
+
+.status-completed {
+  @apply text-success-600 bg-success-100;
+}
+
+/* Professional hover effects */
+.hover-lift {
+  @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-olive {
+  background: linear-gradient(135deg, #556b2f 0%, #3a471d 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}

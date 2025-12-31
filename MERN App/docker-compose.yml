@@ -1,0 +1,159 @@
+# ===========================================
+# Docker Compose Configuration
+# ===========================================
+# 
+# This file orchestrates all services for the
+# Task/Project Management System.
+# 
+# Services:
+# - MongoDB: Database server
+# - Backend: Node.js/Express API
+# - Frontend: React/Vite application
+# 
+# Usage:
+# - Development: docker-compose up --build
+# - Production: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+# - Stop: docker-compose down
+# - With volumes cleanup: docker-compose down -v
+# ===========================================
+
+services:
+  # ===========================================
+  # MongoDB Database Service
+  # ===========================================
+  # 
+  # Primary database for storing all application data.
+  # Uses official MongoDB image with persistent storage.
+  # ===========================================
+  mongodb:
+    image: mongo:7.0
+    container_name: taskmanager-mongodb
+    restart: unless-stopped
+    environment:
+      # MongoDB root credentials
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: taskmanager
+    ports:
+      # Map MongoDB default port to host
+      - "27017:27017"
+    volumes:
+      # Persistent storage for database files
+      - mongodb_data:/data/db
+      # MongoDB configuration (optional)
+      - mongodb_config:/data/configdb
+    networks:
+      - taskmanager-network
+    healthcheck:
+      # Health check to ensure MongoDB is ready
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  # ===========================================
+  # Backend API Service
+  # ===========================================
+  # 
+  # Node.js/Express REST API server.
+  # Handles all business logic and database operations.
+  # ===========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: taskmanager-backend
+    restart: unless-stopped
+    environment:
+      # Node environment
+      NODE_ENV: development
+      PORT: 5000
+      # MongoDB connection string (references mongodb service)
+      MONGO_URI: mongodb://admin:admin123@mongodb:27017/taskmanager?authSource=admin
+      # JWT Configuration
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      JWT_EXPIRE: 7d
+      JWT_COOKIE_EXPIRE: 7
+      # File Upload Configuration
+      MAX_FILE_SIZE: 10485760
+      # Frontend URL for CORS
+      FRONTEND_URL: http://localhost:3000
+    ports:
+      # Map API port to host
+      - "5000:5000"
+    volumes:
+      # Mount source code for hot reloading
+      - ./backend:/app
+      # Prevent overwriting node_modules from container
+      - /app/node_modules
+      # Persistent storage for uploads
+      - uploads_data:/app/uploads
+    networks:
+      - taskmanager-network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    command: npm run dev
+
+  # ===========================================
+  # Frontend Application Service
+  # ===========================================
+  # 
+  # React/Vite development server.
+  # Provides the user interface for the application.
+  # ===========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development
+    container_name: taskmanager-frontend
+    restart: unless-stopped
+    environment:
+      # Vite environment variables
+      # Using proxy through Vite dev server - no need to set VITE_API_URL
+      NODE_ENV: development
+    ports:
+      # Map Vite dev server port to host (Vite runs on port 3000 as configured)
+      - "3000:3000"
+    volumes:
+      # Mount source code for hot reloading
+      - ./frontend:/app
+      # Prevent overwriting node_modules from container
+      - /app/node_modules
+    networks:
+      - taskmanager-network
+    depends_on:
+      - backend
+    command: npm run dev -- --host
+
+# ===========================================
+# Named Volumes
+# ===========================================
+# 
+# Persistent storage volumes for data that
+# should survive container restarts.
+# ===========================================
+volumes:
+  # MongoDB database files
+  mongodb_data:
+    driver: local
+  # MongoDB configuration
+  mongodb_config:
+    driver: local
+  # Uploaded files storage
+  uploads_data:
+    driver: local
+
+# ===========================================
+# Networks
+# ===========================================
+# 
+# Custom bridge network for service communication.
+# All services can communicate using service names.
+# ===========================================
+networks:
+  taskmanager-network:
+    driver: bridge

@@ -1,0 +1,743 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tocloft}
+
+% Header and footer configuration
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{TaskFlow - Project Proposal}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Hyperlink configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% Title page configuration
+\begin{document}
+
+% Custom title page
+\begin{titlepage}
+    \centering
+    
+    % UET Logo
+    \includegraphics[width=0.3\textwidth]{uet_logo.png}\\[1cm]
+    
+    % Project name
+    {\Huge\bfseries TaskFlow: Task \& Project Management System\par}
+    \vspace{0.5cm}
+    {\Large\bfseries Project Proposal\par}
+    \vspace{2cm}
+    
+    % Submitted by section
+    {\Large\bfseries Submitted By:\par}
+    \vspace{0.5cm}
+    {\large
+    Abdul Rehman (2023-CS-20)\\
+    Hamid Riaz (2023-CS-10)\\
+    Ahmed Butt (2023-CS-18)\\
+    M. Zaeem (2023-CS-38)\\
+    }
+    \vspace{2cm}
+    
+    % Submitted to section
+    {\Large\bfseries Submitted To:\par}
+    \vspace{0.5cm}
+    {\large
+    Sir Amjad Farooq\\
+    }
+    \vspace{1cm}
+    
+    % Department
+    {\large
+    Department of Computer Science\\
+    University of Engineering and Technology, Lahore\\
+    }
+    \vfill
+    
+    % Date
+    {\large \today\par}
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Document sections
+\section{Executive Summary}
+
+TaskFlow is a modern, full-stack web application designed to revolutionize team collaboration and project management. Built using the MERN (MongoDB, Express.js, React, Node.js) stack, this system provides an intuitive platform for managing projects, tracking tasks, and facilitating team communication.
+
+The application addresses the growing need for efficient digital project management tools in academic and professional environments. With features like real-time task tracking, Kanban-style boards, role-based access control, and comprehensive analytics dashboards, TaskFlow aims to streamline workflows and enhance productivity.
+
+This proposal outlines the project's objectives, scope, technical architecture, implementation plan, and expected outcomes. The system will be fully containerized using Docker, ensuring easy deployment and scalability across different environments.
+
+\section{Problem Statement}
+
+\subsection{Background}
+In today's fast-paced work environment, teams struggle with:
+\begin{itemize}
+    \item Fragmented communication across multiple platforms
+    \item Lack of visibility into project progress and deadlines
+    \item Inefficient task assignment and tracking mechanisms
+    \item Difficulty in coordinating team members across different locations
+    \item Manual tracking of project metrics and performance
+    \item Limited accessibility to project information
+\end{itemize}
+
+\subsection{Current Challenges}
+Many existing project management solutions suffer from:
+\begin{itemize}
+    \item Complex user interfaces that require extensive training
+    \item High costs and subscription fees
+    \item Limited customization options
+    \item Poor integration capabilities
+    \item Lack of real-time updates
+    \item Security and data privacy concerns
+\end{itemize}
+
+\subsection{Target Audience}
+\begin{itemize}
+    \item Student teams working on group projects
+    \item Academic departments managing course projects
+    \item Small to medium-sized development teams
+    \item Organizations requiring internal project tracking
+    \item Startups needing affordable project management solutions
+\end{itemize}
+
+\section{Project Objectives}
+
+\subsection{Primary Objectives}
+\begin{enumerate}
+    \item \textbf{Develop a User-Friendly Interface}
+    \begin{itemize}
+        \item Create an intuitive, responsive web application
+        \item Ensure accessibility across devices (desktop, tablet, mobile)
+        \item Implement modern UI/UX principles
+    \end{itemize}
+    
+    \item \textbf{Implement Core Project Management Features}
+    \begin{itemize}
+        \item Project creation and management
+        \item Task assignment and tracking
+        \item Kanban board for visual workflow management
+        \item Team member collaboration tools
+    \end{itemize}
+    
+    \item \textbf{Ensure Security and Privacy}
+    \begin{itemize}
+        \item Implement robust authentication mechanisms
+        \item Role-based access control
+        \item Secure data storage and transmission
+        \item Password encryption
+    \end{itemize}
+    
+    \item \textbf{Provide Analytics and Insights}
+    \begin{itemize}
+        \item Real-time project statistics
+        \item Task completion metrics
+        \item Activity tracking and reporting
+        \item Deadline monitoring
+    \end{itemize}
+    
+    \item \textbf{Enable Easy Deployment}
+    \begin{itemize}
+        \item Full containerization with Docker
+        \item Simple setup and configuration
+        \item Scalable architecture
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Secondary Objectives}
+\begin{itemize}
+    \item Establish best practices for MERN stack development
+    \item Create comprehensive documentation
+    \item Implement code quality standards
+    \item Design for future extensibility
+    \item Optimize performance and responsiveness
+\end{itemize}
+
+\section{Proposed Solution}
+
+\subsection{System Overview}
+TaskFlow is a web-based application that provides comprehensive project and task management capabilities. The system architecture follows modern web development practices with a clear separation between frontend, backend, and database layers.
+
+\subsection{Key Features}
+
+\subsubsection{User Management}
+\begin{itemize}
+    \item Secure user registration and login
+    \item Profile customization with avatar uploads
+    \item Password management and recovery
+    \item Role-based permissions (User, Manager, Admin)
+\end{itemize}
+
+\subsubsection{Project Management}
+\begin{itemize}
+    \item Create and configure projects with detailed descriptions
+    \item Set project priorities and deadlines
+    \item Assign color-coding for easy identification
+    \item Track project status through lifecycle stages
+    \item Manage project team members
+\end{itemize}
+
+\subsubsection{Task Management}
+\begin{itemize}
+    \item Create tasks with comprehensive details
+    \item Assign tasks to specific team members
+    \item Set priority levels (Low, Medium, High, Critical)
+    \item Track task status (Todo, In Progress, In Review, Completed)
+    \item Drag-and-drop Kanban board interface
+    \item Subtask creation for breaking down work
+    \item File attachments for task documentation
+    \item Due date tracking and deadline alerts
+\end{itemize}
+
+\subsubsection{Collaboration Tools}
+\begin{itemize}
+    \item Team member directory with search functionality
+    \item Task commenting system for discussions
+    \item Activity feed showing recent updates
+    \item @mentions for notifying specific users (future enhancement)
+\end{itemize}
+
+\subsubsection{Dashboard and Analytics}
+\begin{itemize}
+    \item Personalized dashboard with key metrics
+    \item Project and task statistics
+    \item Visual progress indicators
+    \item Upcoming deadlines overview
+    \item Recent activity timeline
+    \item Team performance metrics (for managers)
+\end{itemize}
+
+\subsection{Technical Architecture}
+
+\subsubsection{Frontend Layer}
+\begin{itemize}
+    \item \textbf{Framework}: React 18 with functional components and hooks
+    \item \textbf{Build Tool}: Vite for fast development and optimized production builds
+    \item \textbf{Styling}: TailwindCSS for responsive, utility-first design
+    \item \textbf{Routing}: React Router for single-page application navigation
+    \item \textbf{State Management}: React Context API for authentication and global state
+    \item \textbf{HTTP Client}: Axios with interceptors for API communication
+    \item \textbf{UI Components}: Custom components with consistent design system
+\end{itemize}
+
+\subsubsection{Backend Layer}
+\begin{itemize}
+    \item \textbf{Runtime}: Node.js v20 LTS
+    \item \textbf{Framework}: Express.js for RESTful API
+    \item \textbf{Architecture}: MVC (Model-View-Controller) pattern
+    \item \textbf{Authentication}: JWT (JSON Web Tokens) for stateless auth
+    \item \textbf{Validation}: express-validator for request validation
+    \item \textbf{Security}: bcryptjs for password hashing, CORS middleware
+    \item \textbf{File Handling}: multer for file uploads
+\end{itemize}
+
+\subsubsection{Database Layer}
+\begin{itemize}
+    \item \textbf{Database}: MongoDB (NoSQL document database)
+    \item \textbf{ODM}: Mongoose for schema definition and validation
+    \item \textbf{Collections}: Users, Projects, Tasks, Comments
+    \item \textbf{Relationships}: Referenced documents with population
+    \item \textbf{Indexing}: Optimized queries with strategic indexes
+\end{itemize}
+
+\subsubsection{Deployment}
+\begin{itemize}
+    \item \textbf{Containerization}: Docker and Docker Compose
+    \item \textbf{Multi-stage Builds}: Separate development and production images
+    \item \textbf{Web Server}: Nginx for serving production frontend
+    \item \textbf{Networking}: Custom Docker bridge network for service communication
+    \item \textbf{Volumes}: Persistent storage for database and uploads
+\end{itemize}
+
+\section{Technical Specifications}
+
+\subsection{System Requirements}
+
+\subsubsection{Development Environment}
+\begin{itemize}
+    \item Node.js v20.x or higher
+    \item npm or yarn package manager
+    \item Docker Desktop (for containerization)
+    \item MongoDB 6.x (standalone or via Docker)
+    \item Modern code editor (VS Code recommended)
+    \item Git for version control
+\end{itemize}
+
+\subsubsection{Production Environment}
+\begin{itemize}
+    \item Docker Engine 20.x or higher
+    \item Docker Compose v2.x
+    \item Minimum 2GB RAM
+    \item 10GB disk space
+    \item Linux/Windows/macOS operating system
+\end{itemize}
+
+\subsubsection{Client Requirements}
+\begin{itemize}
+    \item Modern web browser (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
+    \item JavaScript enabled
+    \item Internet connection (minimum 1 Mbps)
+    \item Screen resolution: 1024x768 or higher
+\end{itemize}
+
+\subsection{Technology Stack Details}
+
+\subsubsection{Frontend Dependencies}
+\begin{itemize}
+    \item react: 18.2.0
+    \item react-dom: 18.2.0
+    \item react-router-dom: 6.x
+    \item axios: 1.x
+    \item tailwindcss: 3.x
+    \item lucide-react: Icon library
+    \item react-hot-toast: Toast notifications
+\end{itemize}
+
+\subsubsection{Backend Dependencies}
+\begin{itemize}
+    \item express: 4.x
+    \item mongoose: 8.x
+    \item jsonwebtoken: 9.x
+    \item bcryptjs: 2.x
+    \item express-validator: 7.x
+    \item multer: 1.x
+    \item cors: 2.x
+    \item dotenv: 16.x
+\end{itemize}
+
+\subsection{API Design}
+
+\subsubsection{RESTful Principles}
+\begin{itemize}
+    \item Stateless communication
+    \item Resource-based URLs
+    \item Standard HTTP methods (GET, POST, PUT, DELETE, PATCH)
+    \item JSON request/response format
+    \item Proper HTTP status codes
+    \item JWT bearer token authentication
+\end{itemize}
+
+\subsubsection{API Structure}
+\begin{itemize}
+    \item /api/auth/* - Authentication endpoints
+    \item /api/users/* - User management
+    \item /api/projects/* - Project operations
+    \item /api/tasks/* - Task management
+    \item /api/comments/* - Comment system
+    \item /api/dashboard/* - Analytics and statistics
+\end{itemize}
+
+\subsection{Database Schema}
+
+\subsubsection{Collections}
+\begin{enumerate}
+    \item \textbf{users}: User accounts and profiles
+    \item \textbf{projects}: Project information and settings
+    \item \textbf{tasks}: Task details and assignments
+    \item \textbf{comments}: Task discussions and feedback
+\end{enumerate}
+
+\subsubsection{Relationships}
+\begin{itemize}
+    \item Users $\rightarrow$ Projects (one-to-many)
+    \item Projects $\rightarrow$ Tasks (one-to-many)
+    \item Tasks $\rightarrow$ Comments (one-to-many)
+    \item Users $\leftrightarrow$ Projects (many-to-many via members array)
+\end{itemize}
+
+\section{Implementation Plan}
+
+\subsection{Development Phases}
+
+\subsubsection{Phase 1: Project Setup and Foundation (Week 1-2)}
+\begin{itemize}
+    \item Initialize project structure
+    \item Set up development environment
+    \item Configure Docker containers
+    \item Establish database connection
+    \item Implement basic Express server
+    \item Create initial React application
+    \item Set up routing and navigation
+\end{itemize}
+
+\subsubsection{Phase 2: Authentication System (Week 3-4)}
+\begin{itemize}
+    \item Design User schema
+    \item Implement registration endpoint
+    \item Implement login endpoint
+    \item Create JWT authentication middleware
+    \item Build login/register UI
+    \item Implement AuthContext for state management
+    \item Add protected route handling
+\end{itemize}
+
+\subsubsection{Phase 3: Project Management (Week 5-6)}
+\begin{itemize}
+    \item Design Project schema
+    \item Implement project CRUD operations
+    \item Create project list page
+    \item Build project creation form
+    \item Implement project filtering and search
+    \item Add member management functionality
+\end{itemize}
+
+\subsubsection{Phase 4: Task Management (Week 7-9)}
+\begin{itemize}
+    \item Design Task schema
+    \item Implement task CRUD operations
+    \item Create Kanban board interface
+    \item Implement drag-and-drop functionality
+    \item Build task creation/edit forms
+    \item Add subtask management
+    \item Implement file upload for attachments
+    \item Create "My Tasks" view
+\end{itemize}
+
+\subsubsection{Phase 5: Dashboard and Analytics (Week 10-11)}
+\begin{itemize}
+    \item Design dashboard layout
+    \item Implement statistics calculation
+    \item Create activity feed
+    \item Build deadline tracking
+    \item Add team performance metrics
+    \item Implement data visualization
+\end{itemize}
+
+\subsubsection{Phase 6: Collaboration Features (Week 12-13)}
+\begin{itemize}
+    \item Design Comment schema
+    \item Implement comment system
+    \item Create team member directory
+    \item Add comment threading
+    \item Implement activity tracking
+\end{itemize}
+
+\subsubsection{Phase 7: Testing and Refinement (Week 14-15)}
+\begin{itemize}
+    \item Unit testing for critical functions
+    \item API endpoint testing
+    \item UI/UX testing
+    \item Cross-browser compatibility testing
+    \item Performance optimization
+    \item Security audit
+    \item Bug fixes and improvements
+\end{itemize}
+
+\subsubsection{Phase 8: Documentation and Deployment (Week 16)}
+\begin{itemize}
+    \item Complete code documentation
+    \item Write user manual
+    \item Create deployment guide
+    \item Prepare demonstration
+    \item Final testing
+    \item Production deployment
+\end{itemize}
+
+\subsection{Milestones}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Milestone} & \textbf{Deliverable} & \textbf{Timeline} \\
+\hline
+M1 & Project setup complete & Week 2 \\
+M2 & Authentication working & Week 4 \\
+M3 & Project management complete & Week 6 \\
+M4 & Task management complete & Week 9 \\
+M5 & Dashboard functional & Week 11 \\
+M6 & Collaboration features done & Week 13 \\
+M7 & Testing complete & Week 15 \\
+M8 & Final deployment & Week 16 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Team Roles and Responsibilities}
+
+\subsubsection{Abdul Rehman (2023-CS-20)}
+\begin{itemize}
+    \item Backend API development
+    \item Database schema design
+    \item Authentication system
+    \item Deployment configuration
+\end{itemize}
+
+\subsubsection{Hamid Riaz (2023-CS-10)}
+\begin{itemize}
+    \item Frontend development
+    \item UI/UX design
+    \item Component architecture
+    \item State management
+\end{itemize}
+
+\subsubsection{Ahmed Butt (2023-CS-18)}
+\begin{itemize}
+    \item Task management features
+    \item Kanban board implementation
+    \item File upload functionality
+    \item Testing and QA
+\end{itemize}
+
+\subsubsection{M. Zaeem (2023-CS-38)}
+\begin{itemize}
+    \item Dashboard and analytics
+    \item Comment system
+    \item Team collaboration features
+    \item Documentation
+\end{itemize}
+
+\section{Expected Outcomes}
+
+\subsection{Deliverables}
+\begin{enumerate}
+    \item Fully functional web application
+    \item Docker containerized deployment
+    \item Source code repository with version control
+    \item API documentation
+    \item User manual and deployment guide
+    \item Project presentation and demonstration
+    \item Technical documentation (SRS, Design Documents)
+\end{enumerate}
+
+\subsection{Learning Outcomes}
+\begin{itemize}
+    \item Practical experience with MERN stack development
+    \item Understanding of RESTful API design principles
+    \item Knowledge of modern authentication mechanisms
+    \item Experience with Docker containerization
+    \item Proficiency in React state management
+    \item Database design and optimization skills
+    \item Collaborative development practices
+    \item Agile project management experience
+\end{itemize}
+
+\subsection{Benefits}
+\begin{itemize}
+    \item Improved team collaboration and communication
+    \item Better project visibility and tracking
+    \item Streamlined task management workflows
+    \item Data-driven decision making through analytics
+    \item Reduced time spent on administrative tasks
+    \item Enhanced productivity and efficiency
+    \item Scalable solution for growing teams
+\end{itemize}
+
+\section{Risk Analysis}
+
+\subsection{Technical Risks}
+\begin{enumerate}
+    \item \textbf{Integration Challenges}
+    \begin{itemize}
+        \item Risk: Difficulty integrating frontend and backend
+        \item Mitigation: Early API contract definition, regular integration testing
+    \end{itemize}
+    
+    \item \textbf{Performance Issues}
+    \begin{itemize}
+        \item Risk: Slow response times with large datasets
+        \item Mitigation: Database indexing, query optimization, pagination
+    \end{itemize}
+    
+    \item \textbf{Security Vulnerabilities}
+    \begin{itemize}
+        \item Risk: Authentication bypass, data breaches
+        \item Mitigation: Security best practices, regular audits, input validation
+    \end{itemize}
+    
+    \item \textbf{Browser Compatibility}
+    \begin{itemize}
+        \item Risk: UI issues on different browsers
+        \item Mitigation: Cross-browser testing, progressive enhancement
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Project Management Risks}
+\begin{enumerate}
+    \item \textbf{Timeline Delays}
+    \begin{itemize}
+        \item Risk: Features taking longer than estimated
+        \item Mitigation: Buffer time in schedule, regular progress reviews
+    \end{itemize}
+    
+    \item \textbf{Scope Creep}
+    \begin{itemize}
+        \item Risk: Adding features beyond original plan
+        \item Mitigation: Clear requirements document, change control process
+    \end{itemize}
+    
+    \item \textbf{Team Coordination}
+    \begin{itemize}
+        \item Risk: Communication gaps, conflicting changes
+        \item Mitigation: Regular meetings, version control, code reviews
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Resource Risks}
+\begin{enumerate}
+    \item \textbf{Learning Curve}
+    \begin{itemize}
+        \item Risk: Team unfamiliar with certain technologies
+        \item Mitigation: Tutorials, documentation, pair programming
+    \end{itemize}
+    
+    \item \textbf{Infrastructure Issues}
+    \begin{itemize}
+        \item Risk: Development environment problems
+        \item Mitigation: Docker standardization, backup environments
+    \end{itemize}
+\end{enumerate}
+
+\section{Budget and Resources}
+
+\subsection{Development Resources}
+\begin{itemize}
+    \item \textbf{Human Resources}: 4 developers (16 weeks)
+    \item \textbf{Hardware}: Personal computers for development
+    \item \textbf{Software}: Free and open-source tools
+\end{itemize}
+
+\subsection{Cost Analysis}
+\begin{itemize}
+    \item Development tools: Free (VS Code, Git)
+    \item Cloud hosting (optional): \$10-20/month
+    \item Domain name (optional): \$10-15/year
+    \item SSL certificate: Free (Let's Encrypt)
+    \item Total estimated cost: \$0 for development, \$120-240/year for hosting
+\end{itemize}
+
+\subsection{Tools and Technologies}
+\begin{itemize}
+    \item \textbf{Development}: VS Code, Git, GitHub
+    \item \textbf{Design}: Figma (optional)
+    \item \textbf{Testing}: Postman, Jest (future)
+    \item \textbf{Documentation}: LaTeX, Markdown
+    \item \textbf{Communication}: Discord, Slack
+\end{itemize}
+
+\section{Evaluation Criteria}
+
+\subsection{Functional Completeness}
+\begin{itemize}
+    \item All core features implemented and working
+    \item User stories satisfied
+    \item Requirements fulfilled
+\end{itemize}
+
+\subsection{Code Quality}
+\begin{itemize}
+    \item Clean, readable code with comments
+    \item Consistent coding style
+    \item Modular architecture
+    \item Error handling
+\end{itemize}
+
+\subsection{User Experience}
+\begin{itemize}
+    \item Intuitive interface
+    \item Responsive design
+    \item Fast performance
+    \item Clear navigation
+\end{itemize}
+
+\subsection{Security}
+\begin{itemize}
+    \item Secure authentication
+    \item Data validation
+    \item Protection against common vulnerabilities
+    \item Secure data transmission
+\end{itemize}
+
+\subsection{Documentation}
+\begin{itemize}
+    \item Complete technical documentation
+    \item User manual
+    \item API documentation
+    \item Deployment guide
+\end{itemize}
+
+\section{Future Enhancements}
+
+\subsection{Short-term (3-6 months)}
+\begin{itemize}
+    \item Email notifications for task assignments
+    \item Calendar view for deadlines
+    \item Advanced filtering and sorting
+    \item Export functionality (PDF, Excel)
+    \item Dark mode theme
+\end{itemize}
+
+\subsection{Medium-term (6-12 months)}
+\begin{itemize}
+    \item Real-time updates with WebSockets
+    \item Time tracking functionality
+    \item Gantt chart visualization
+    \item Advanced reporting and analytics
+    \item Integration with external tools (Slack, GitHub)
+\end{itemize}
+
+\subsection{Long-term (1+ years)}
+\begin{itemize}
+    \item Mobile application (React Native)
+    \item AI-powered task recommendations
+    \item Video conferencing integration
+    \item Multi-language support
+    \item Enterprise features (SSO, LDAP)
+\end{itemize}
+
+\section{Conclusion}
+
+TaskFlow represents a comprehensive solution to modern project management challenges, combining powerful features with an intuitive user interface. Built on the proven MERN stack and following industry best practices, the system is designed to be scalable, maintainable, and user-friendly.
+
+This project will provide valuable hands-on experience with full-stack web development, demonstrate practical application of software engineering principles, and result in a functional product that can be used by teams to improve their productivity and collaboration.
+
+With a well-defined implementation plan, clear milestones, and a dedicated team, we are confident in delivering a high-quality project management system that meets all specified requirements and exceeds expectations.
+
+\section{References}
+
+\begin{enumerate}
+    \item MongoDB Documentation: https://docs.mongodb.com
+    \item Express.js Guide: https://expressjs.com
+    \item React Documentation: https://react.dev
+    \item Node.js Documentation: https://nodejs.org
+    \item Docker Documentation: https://docs.docker.com
+    \item JWT Introduction: https://jwt.io/introduction
+    \item RESTful API Design Best Practices
+    \item Software Engineering: A Practitioner's Approach by Roger Pressman
+    \item Web Development with Node and Express by Ethan Brown
+    \item Learning React by Alex Banks and Eve Porcello
+\end{enumerate}
+
+\section{Appendices}
+
+\subsection{Appendix A: System Architecture Diagram}
+(Diagram to be added showing frontend, backend, and database layers)
+
+\subsection{Appendix B: Use Case Diagrams}
+(Diagrams showing user interactions with the system)
+
+\subsection{Appendix C: Database Schema Diagram}
+(ERD showing all collections and relationships)
+
+\subsection{Appendix D: UI Mockups}
+(Screenshots or wireframes of key application screens)
+
+\subsection{Appendix E: API Endpoint Reference}
+(Complete list of all API endpoints with request/response examples)
+
+\end{document}

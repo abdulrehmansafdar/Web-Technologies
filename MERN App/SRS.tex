@@ -1,0 +1,564 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tocloft}
+\usepackage{longtable}
+
+% Header and footer configuration
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{TaskFlow - Software Requirements Specification}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Hyperlink configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% Title page configuration
+\begin{document}
+
+% Custom title page
+\begin{titlepage}
+    \centering
+    
+    % UET Logo
+    \includegraphics[width=0.3\textwidth]{uet_logo.png}\\[1cm]
+    
+    % Project name
+    {\Huge\bfseries TaskFlow: Task \& Project Management System\par}
+    \vspace{0.5cm}
+    {\Large\bfseries Software Requirements Specification (SRS)\par}
+    \vspace{2cm}
+    
+    % Submitted by section
+    {\Large\bfseries Submitted By:\par}
+    \vspace{0.5cm}
+    {\large
+    Abdul Rehman (2023-CS-20)\\
+    Hamid Riaz (2023-CS-10)\\
+    Ahmed Butt (2023-CS-18)\\
+    M. Zaeem (2023-CS-38)\\
+    }
+    \vspace{2cm}
+    
+    % Submitted to section
+    {\Large\bfseries Submitted To:\par}
+    \vspace{0.5cm}
+    {\large
+    Sir Amjad Farooq\\
+    }
+    \vspace{1cm}
+    
+    % Department
+    {\large
+    Department of Computer Science\\
+    University of Engineering and Technology, Lahore\\
+    }
+    \vfill
+    
+    % Date
+    {\large \today\par}
+\end{titlepage}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Document sections
+\section{Introduction}
+
+\subsection{Purpose}
+This Software Requirements Specification (SRS) document provides a comprehensive description of the TaskFlow system - a modern, full-stack Task and Project Management application built using the MERN (MongoDB, Express.js, React, Node.js) stack. This document is intended for:
+\begin{itemize}
+    \item Development team members
+    \item Project stakeholders
+    \item Quality assurance teams
+    \item System administrators
+    \item End users
+\end{itemize}
+
+\subsection{Scope}
+TaskFlow is a web-based collaborative project management system designed to streamline team workflows, task assignments, and project tracking. The system enables:
+\begin{itemize}
+    \item Project creation and management
+    \item Task assignment and tracking with Kanban boards
+    \item Team collaboration and member management
+    \item Real-time dashboard analytics
+    \item User authentication and role-based access control
+    \item File uploads and attachments
+    \item Comment and activity tracking
+\end{itemize}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{itemize}
+    \item \textbf{MERN Stack}: MongoDB, Express.js, React, Node.js
+    \item \textbf{SRS}: Software Requirements Specification
+    \item \textbf{API}: Application Programming Interface
+    \item \textbf{JWT}: JSON Web Token
+    \item \textbf{REST}: Representational State Transfer
+    \item \textbf{CRUD}: Create, Read, Update, Delete
+    \item \textbf{UI}: User Interface
+    \item \textbf{UX}: User Experience
+\end{itemize}
+
+\subsection{References}
+\begin{itemize}
+    \item IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications
+    \item MERN Stack Documentation
+    \item Docker Documentation
+    \item MongoDB Documentation
+    \item React.js Documentation
+\end{itemize}
+
+\subsection{Overview}
+This document is structured into several sections describing functional requirements, non-functional requirements, system architecture, and deployment specifications. Each section provides detailed information about specific aspects of the TaskFlow system.
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+TaskFlow is a standalone web application designed to replace traditional project management methods with a modern, digital solution. The system consists of:
+\begin{itemize}
+    \item \textbf{Frontend}: React-based single-page application with Vite build tool
+    \item \textbf{Backend}: Node.js/Express.js RESTful API server
+    \item \textbf{Database}: MongoDB for persistent data storage
+    \item \textbf{Deployment}: Docker containerization for easy deployment
+\end{itemize}
+
+\subsection{Product Functions}
+The major functions of TaskFlow include:
+\begin{enumerate}
+    \item \textbf{User Management}
+    \begin{itemize}
+        \item User registration and authentication
+        \item Profile management
+        \item Role-based access control
+        \item Password management
+    \end{itemize}
+    
+    \item \textbf{Project Management}
+    \begin{itemize}
+        \item Create, read, update, delete projects
+        \item Project status tracking
+        \item Priority assignment
+        \item Member management
+    \end{itemize}
+    
+    \item \textbf{Task Management}
+    \begin{itemize}
+        \item Task creation and assignment
+        \item Status updates via Kanban board
+        \item Priority levels (low, medium, high, critical)
+        \item Subtask management
+        \item Due date tracking
+    \end{itemize}
+    
+    \item \textbf{Team Collaboration}
+    \begin{itemize}
+        \item Team member viewing
+        \item Task comments and discussions
+        \item Activity tracking
+        \item File attachments
+    \end{itemize}
+    
+    \item \textbf{Dashboard Analytics}
+    \begin{itemize}
+        \item Project statistics
+        \item Task completion metrics
+        \item Upcoming deadlines
+        \item Recent activity feed
+    \end{itemize}
+\end{enumerate}
+
+\subsection{User Classes and Characteristics}
+\begin{enumerate}
+    \item \textbf{Regular User}
+    \begin{itemize}
+        \item Can view assigned tasks
+        \item Can update task status
+        \item Can view projects they're members of
+        \item Can add comments
+    \end{itemize}
+    
+    \item \textbf{Project Manager}
+    \begin{itemize}
+        \item All user permissions
+        \item Can create projects
+        \item Can assign tasks
+        \item Can manage team members
+    \end{itemize}
+    
+    \item \textbf{Administrator}
+    \begin{itemize}
+        \item All manager permissions
+        \item Can manage all users
+        \item Can access all projects
+        \item Can view team performance metrics
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Operating Environment}
+\begin{itemize}
+    \item \textbf{Client Side}: Modern web browsers (Chrome, Firefox, Safari, Edge)
+    \item \textbf{Server Side}: Node.js v20.x runtime environment
+    \item \textbf{Database}: MongoDB 6.x or higher
+    \item \textbf{Container Platform}: Docker and Docker Compose
+    \item \textbf{Operating System}: Linux, Windows, macOS (via Docker)
+\end{itemize}
+
+\subsection{Design and Implementation Constraints}
+\begin{itemize}
+    \item Must use MERN stack technologies
+    \item Must be containerized using Docker
+    \item Must follow RESTful API design principles
+    \item Must implement JWT-based authentication
+    \item Must be responsive for mobile and desktop devices
+    \item Must support file uploads up to 5MB
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+    \item Users have stable internet connection
+    \item Docker is installed for deployment
+    \item MongoDB database is accessible
+    \item Users have modern web browsers
+    \item Email service is configured for notifications (future enhancement)
+\end{itemize}
+
+\section{Specific Requirements}
+
+\subsection{Functional Requirements}
+
+\subsubsection{FR1: User Authentication}
+\begin{itemize}
+    \item \textbf{FR1.1}: System shall allow users to register with name, email, password, and department
+    \item \textbf{FR1.2}: System shall validate email format and password strength
+    \item \textbf{FR1.3}: System shall authenticate users using email and password
+    \item \textbf{FR1.4}: System shall generate JWT tokens for authenticated sessions
+    \item \textbf{FR1.5}: System shall allow users to log out
+\end{itemize}
+
+\subsubsection{FR2: Profile Management}
+\begin{itemize}
+    \item \textbf{FR2.1}: Users shall be able to view their profile information
+    \item \textbf{FR2.2}: Users shall be able to update profile details
+    \item \textbf{FR2.3}: Users shall be able to change their password
+    \item \textbf{FR2.4}: System shall validate password changes
+\end{itemize}
+
+\subsubsection{FR3: Project Management}
+\begin{itemize}
+    \item \textbf{FR3.1}: Users shall be able to create new projects
+    \item \textbf{FR3.2}: Users shall be able to view all projects they own or are members of
+    \item \textbf{FR3.3}: Users shall be able to update project details
+    \item \textbf{FR3.4}: Users shall be able to delete projects they own
+    \item \textbf{FR3.5}: System shall support project status: planning, in-progress, on-hold, completed, cancelled
+    \item \textbf{FR3.6}: System shall support priority levels: low, medium, high, critical
+    \item \textbf{FR3.7}: Users shall be able to add/remove team members to projects
+\end{itemize}
+
+\subsubsection{FR4: Task Management}
+\begin{itemize}
+    \item \textbf{FR4.1}: Users shall be able to create tasks within projects
+    \item \textbf{FR4.2}: Users shall be able to assign tasks to team members
+    \item \textbf{FR4.3}: Users shall be able to update task details
+    \item \textbf{FR4.4}: Users shall be able to change task status via Kanban board
+    \item \textbf{FR4.5}: System shall support task statuses: todo, in-progress, in-review, completed
+    \item \textbf{FR4.6}: Users shall be able to set task due dates
+    \item \textbf{FR4.7}: Users shall be able to add subtasks
+    \item \textbf{FR4.8}: Users shall be able to attach files to tasks
+\end{itemize}
+
+\subsubsection{FR5: Dashboard}
+\begin{itemize}
+    \item \textbf{FR5.1}: System shall display total project count
+    \item \textbf{FR5.2}: System shall display total task count
+    \item \textbf{FR5.3}: System shall display completed tasks count
+    \item \textbf{FR5.4}: System shall show recent activity feed
+    \item \textbf{FR5.5}: System shall show upcoming deadlines
+    \item \textbf{FR5.6}: Managers shall be able to view team performance metrics
+\end{itemize}
+
+\subsubsection{FR6: Team Collaboration}
+\begin{itemize}
+    \item \textbf{FR6.1}: Users shall be able to view all team members
+    \item \textbf{FR6.2}: Users shall be able to search team members
+    \item \textbf{FR6.3}: Users shall be able to add comments to tasks
+    \item \textbf{FR6.4}: Users shall be able to edit/delete their own comments
+\end{itemize}
+
+\subsection{Non-Functional Requirements}
+
+\subsubsection{NFR1: Performance}
+\begin{itemize}
+    \item System shall respond to user actions within 2 seconds
+    \item API endpoints shall respond within 500ms under normal load
+    \item System shall support at least 100 concurrent users
+    \item Database queries shall be optimized with proper indexing
+\end{itemize}
+
+\subsubsection{NFR2: Security}
+\begin{itemize}
+    \item All passwords shall be hashed using bcrypt
+    \item Authentication shall use JWT tokens
+    \item API endpoints shall be protected with authentication middleware
+    \item File uploads shall be validated for type and size
+    \item System shall prevent SQL injection and XSS attacks
+\end{itemize}
+
+\subsubsection{NFR3: Usability}
+\begin{itemize}
+    \item UI shall be intuitive and user-friendly
+    \item System shall be responsive for mobile and desktop devices
+    \item Error messages shall be clear and helpful
+    \item Navigation shall be consistent across all pages
+\end{itemize}
+
+\subsubsection{NFR4: Reliability}
+\begin{itemize}
+    \item System shall have 99\% uptime
+    \item Database connections shall have retry logic
+    \item System shall handle errors gracefully
+    \item Data shall be validated before storage
+\end{itemize}
+
+\subsubsection{NFR5: Maintainability}
+\begin{itemize}
+    \item Code shall be well-documented with comments
+    \item System shall follow MVC architecture pattern
+    \item API shall follow RESTful conventions
+    \item Docker containers shall enable easy deployment
+\end{itemize}
+
+\subsubsection{NFR6: Scalability}
+\begin{itemize}
+    \item System architecture shall support horizontal scaling
+    \item Database shall support replication
+    \item Stateless API design shall enable load balancing
+\end{itemize}
+
+\section{System Architecture}
+
+\subsection{Technology Stack}
+\begin{itemize}
+    \item \textbf{Frontend}: React 18, Vite, TailwindCSS, React Router, Axios
+    \item \textbf{Backend}: Node.js 20, Express.js, Mongoose ODM
+    \item \textbf{Database}: MongoDB
+    \item \textbf{Authentication}: JWT (jsonwebtoken), bcryptjs
+    \item \textbf{Validation}: express-validator
+    \item \textbf{File Upload}: multer
+    \item \textbf{Containerization}: Docker, Docker Compose
+    \item \textbf{Web Server}: Nginx (production frontend)
+\end{itemize}
+
+\subsection{System Components}
+
+\subsubsection{Frontend Application}
+\begin{itemize}
+    \item Single-page application built with React
+    \item Component-based architecture
+    \item Context API for state management
+    \item Protected and public route handling
+    \item Responsive design with TailwindCSS
+\end{itemize}
+
+\subsubsection{Backend API}
+\begin{itemize}
+    \item RESTful API architecture
+    \item MVC pattern implementation
+    \item JWT-based authentication middleware
+    \item Request validation middleware
+    \item File upload handling
+    \item Error handling and logging
+\end{itemize}
+
+\subsubsection{Database}
+\begin{itemize}
+    \item MongoDB document database
+    \item Mongoose ODM for schema definition
+    \item Collections: Users, Projects, Tasks, Comments
+    \item Indexed fields for performance
+    \item Data relationships and population
+\end{itemize}
+
+\subsection{API Endpoints}
+
+\subsubsection{Authentication Routes}
+\begin{itemize}
+    \item POST /api/auth/register - User registration
+    \item POST /api/auth/login - User login
+    \item GET /api/auth/me - Get current user
+    \item PUT /api/auth/profile - Update profile
+    \item PUT /api/auth/password - Change password
+\end{itemize}
+
+\subsubsection{Project Routes}
+\begin{itemize}
+    \item GET /api/projects - Get all projects
+    \item GET /api/projects/:id - Get single project
+    \item POST /api/projects - Create project
+    \item PUT /api/projects/:id - Update project
+    \item DELETE /api/projects/:id - Delete project
+    \item POST /api/projects/:id/members - Add member
+    \item DELETE /api/projects/:id/members/:userId - Remove member
+\end{itemize}
+
+\subsubsection{Task Routes}
+\begin{itemize}
+    \item GET /api/tasks - Get all tasks
+    \item GET /api/tasks/my-tasks - Get user's tasks
+    \item GET /api/tasks/project/:projectId - Get project tasks
+    \item GET /api/tasks/:id - Get single task
+    \item POST /api/tasks - Create task
+    \item PUT /api/tasks/:id - Update task
+    \item PATCH /api/tasks/:id/status - Update task status
+    \item DELETE /api/tasks/:id - Delete task
+\end{itemize}
+
+\subsubsection{Dashboard Routes}
+\begin{itemize}
+    \item GET /api/dashboard/stats - Get statistics
+    \item GET /api/dashboard/activity - Get recent activity
+    \item GET /api/dashboard/deadlines - Get upcoming deadlines
+    \item GET /api/dashboard/team-performance - Get team metrics
+\end{itemize}
+
+\section{Data Models}
+
+\subsection{User Schema}
+\begin{itemize}
+    \item name: String (required)
+    \item email: String (required, unique)
+    \item password: String (required, hashed)
+    \item avatar: String
+    \item role: String (user, manager, admin)
+    \item department: String
+    \item isActive: Boolean
+    \item lastLogin: Date
+\end{itemize}
+
+\subsection{Project Schema}
+\begin{itemize}
+    \item name: String (required)
+    \item description: String
+    \item status: String (planning, in-progress, on-hold, completed, cancelled)
+    \item priority: String (low, medium, high, critical)
+    \item owner: ObjectId (ref: User)
+    \item members: Array of ObjectId (ref: User)
+    \item startDate: Date
+    \item dueDate: Date
+    \item color: String
+    \item tags: Array of String
+\end{itemize}
+
+\subsection{Task Schema}
+\begin{itemize}
+    \item title: String (required)
+    \item description: String
+    \item status: String (todo, in-progress, in-review, completed)
+    \item priority: String (low, medium, high, critical)
+    \item project: ObjectId (ref: Project)
+    \item assignee: ObjectId (ref: User)
+    \item creator: ObjectId (ref: User)
+    \item dueDate: Date
+    \item subtasks: Array of Subtask objects
+    \item attachments: Array of Attachment objects
+\end{itemize}
+
+\subsection{Comment Schema}
+\begin{itemize}
+    \item content: String (required)
+    \item task: ObjectId (ref: Task)
+    \item author: ObjectId (ref: User)
+    \item mentions: Array of ObjectId (ref: User)
+    \item parentComment: ObjectId (ref: Comment)
+    \item isEdited: Boolean
+    \item attachments: Array of objects
+\end{itemize}
+
+\section{Deployment}
+
+\subsection{Docker Configuration}
+The system uses Docker Compose to orchestrate three services:
+\begin{itemize}
+    \item \textbf{MongoDB}: Database service with persistent volume
+    \item \textbf{Backend}: Node.js API server
+    \item \textbf{Frontend}: React application served by Nginx
+\end{itemize}
+
+\subsection{Environment Variables}
+\begin{itemize}
+    \item NODE\_ENV: development/production
+    \item MONGO\_URI: MongoDB connection string
+    \item JWT\_SECRET: Secret key for JWT signing
+    \item PORT: Server port (default: 5000)
+    \item MAX\_FILE\_SIZE: Maximum upload size
+\end{itemize}
+
+\subsection{Deployment Commands}
+\begin{itemize}
+    \item Development: docker-compose up --build
+    \item Production: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+    \item Stop: docker-compose down
+    \item Clean: docker-compose down -v
+\end{itemize}
+
+\section{Testing Requirements}
+
+\subsection{Unit Testing}
+\begin{itemize}
+    \item Test individual controllers and middleware
+    \item Test API endpoints with mock data
+    \item Test React components
+\end{itemize}
+
+\subsection{Integration Testing}
+\begin{itemize}
+    \item Test API and database integration
+    \item Test authentication flow
+    \item Test file upload functionality
+\end{itemize}
+
+\subsection{User Acceptance Testing}
+\begin{itemize}
+    \item Test all user workflows
+    \item Test on different browsers and devices
+    \item Verify all functional requirements
+\end{itemize}
+
+\section{Future Enhancements}
+
+\begin{itemize}
+    \item Real-time notifications using WebSockets
+    \item Email notifications for task assignments
+    \item Calendar view for task deadlines
+    \item Gantt chart visualization
+    \item Time tracking functionality
+    \item File version control
+    \item Advanced reporting and analytics
+    \item Mobile application (React Native)
+    \item Integration with third-party tools (Slack, GitHub)
+\end{itemize}
+
+\section{Appendices}
+
+\subsection{Appendix A: Glossary}
+Additional terms and definitions used throughout the system.
+
+\subsection{Appendix B: Use Case Diagrams}
+Visual representations of system interactions (to be added).
+
+\subsection{Appendix C: Database ERD}
+Entity-Relationship Diagram showing database structure (to be added).
+
+\end{document}
